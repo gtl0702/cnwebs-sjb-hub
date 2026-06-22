@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>世界杯 · 日常查询与延伸阅读——cnwebs-sjb</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f2f4f6;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1d2b3a;
+      line-height: 1.6;
+      padding: 24px 16px;
+    }
+
+    .page-wrapper {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    /* 卡片质感 */
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+      border: 1px solid #e4e9ef;
+      padding: 32px 28px;
+      margin-bottom: 28px;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 24px rgba(0, 20, 40, 0.06);
+    }
+
+    /* hero 区 */
+    .hero {
+      text-align: center;
+      padding: 48px 20px 40px;
+    }
+
+    .hero h1 {
+      font-weight: 500;
+      font-size: 2.4rem;
+      letter-spacing: -0.02em;
+      color: #0b1a2b;
+      margin-bottom: 10px;
+    }
+
+    .hero .subhead {
+      font-size: 1.1rem;
+      color: #4b5d72;
+      max-width: 600px;
+      margin: 0 auto 12px;
+    }
+
+    .hero .tagline {
+      display: inline-block;
+      background: #eef2f8;
+      padding: 6px 18px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      color: #2a4b6e;
+      font-weight: 450;
+      border: 1px solid #d4dee9;
+    }
+
+    /* 网格布局 */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 680px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #69809a;
+      border-bottom: 1px solid #e3eaf2;
+      padding-bottom: 6px;
+      margin-bottom: 18px;
+      font-weight: 500;
+    }
+
+    /* 特点列表 */
+    .feature-list {
+      list-style: none;
+    }
+
+    .feature-list li {
+      padding: 8px 0 8px 28px;
+      position: relative;
+      border-bottom: 1px solid #f0f3f8;
+    }
+
+    .feature-list li::before {
+      content: "▹";
+      position: absolute;
+      left: 4px;
+      color: #2f6a9e;
+      font-weight: 600;
+    }
+
+    .feature-list li:last-child {
+      border-bottom: none;
+    }
+
+    /* 说明区卡片内小字 */
+    .note {
+      background: #f8fafc;
+      padding: 18px 22px;
+      border-radius: 14px;
+      border-left: 4px solid #7b99bb;
+      margin: 18px 0 4px;
+      font-size: 0.95rem;
+      color: #1e344a;
+    }
+
+    .note strong {
+      font-weight: 600;
+      color: #0b2b4a;
+    }
+
+    /* FAQ 摘要 */
+    .faq-item {
+      padding: 14px 0;
+      border-bottom: 1px solid #e9eef5;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #132b41;
+    }
+
+    .faq-q::before {
+      content: "❓";
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+
+    .faq-a {
+      margin-top: 6px;
+      padding-left: 28px;
+      color: #3d4f63;
+      font-size: 0.95rem;
+    }
+
+    .more-faq {
+      margin-top: 16px;
+      text-align: right;
+      font-size: 0.9rem;
+    }
+
+    .more-faq a {
+      color: #1d5a8b;
+      text-decoration: none;
+      border-bottom: 1px dotted #b1c6dd;
+    }
+
+    .more-faq a:hover {
+      border-bottom-color: #1d5a8b;
+    }
+
+    /* 底部 */
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px 42px;
+      padding: 24px 0 8px;
+      font-size: 0.95rem;
+      color: #3e5770;
+    }
+
+    .footer-links a {
+      color: #1d4d74;
+      text-decoration: none;
+      font-weight: 450;
+      border-bottom: 1px solid transparent;
+    }
+
+    .footer-links a:hover {
+      border-bottom-color: #1d4d74;
+    }
+
+    .footer-note {
+      text-align: center;
+      color: #6c829b;
+      font-size: 0.85rem;
+      margin-top: 20px;
+      border-top: 1px solid #dce3ec;
+      padding-top: 24px;
+    }
+
+    .inline-link {
+      color: #1d5a8b;
+      text-decoration: none;
+      font-weight: 450;
+      border-bottom: 1px solid #cbdae8;
+    }
+
+    .inline-link:hover {
+      border-bottom-color: #1d5a8b;
+    }
+
+    h2 {
+      font-weight: 500;
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: #112433;
+    }
+
+    h3 {
+      font-weight: 500;
+      font-size: 1.05rem;
+      margin: 12px 0 6px;
+      color: #1d354b;
+    }
+
+    p {
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- Hero 区 -->
+  <div class="card hero">
+    <h1>世界杯 · 日常查询与对照</h1>
+    <div class="subhead">从赛程、纪录到延伸阅读——不止于赛事。</div>
+    <div class="tagline">⚽ 每次查询都是一次发现</div>
+  </div>
+
+  <!-- 优势区 + 日常场景 -->
+  <div class="grid-2">
+    <div class="card">
+      <div class="section-label">📊 优势 · 信息骨架</div>
+      <ul class="feature-list">
+        <li>历届冠军、决赛比分、金靴得主一览</li>
+        <li>预选赛分组及出线规则对照</li>
+        <li>经典比赛回顾与数据记录</li>
+        <li>东道主信息与场馆历史</li>
+        <li>参赛国名单及历次表现对比</li>
+        <li>延伸阅读：规则沿革、足球文化</li>
+      </ul>
+      <div class="note">
+        <strong>日常使用场景：</strong> 朋友聊起某届经典对决，你可以快速打开页面查找比分与阵容；写文章需要对照历届东道主，不用翻遍百科。
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-label">🔍 场景举例</div>
+      <p style="margin-top:0;">—— 周末看球前，查一查两支球队的历史交手纪录。<br>
+      —— 孩子问“哪个国家拿世界杯最多”，直接对照数据。<br>
+      —— 做世界杯主题简报，快速提取关键信息用于延伸阅读。</p>
+      <p style="background: #f3f7fd; padding: 14px 18px; border-radius: 14px; margin-top: 16px;">
+        💡 你不需要记住所有细节，只需知道在哪里可以查到。<br>
+        把 <a href="https://cnwebs-sjb.com" class="inline-link">世界杯</a> 相关的基础信息、对照表格和延伸阅读放在一起，让日常查询更顺手。
+      </p>
+    </div>
+  </div>
+
+  <!-- 说明区：对照与延伸阅读 -->
+  <div class="card">
+    <h2>说明 · 对照与延伸阅读</h2>
+    <p>这个页面不是为了直播比分或实时新闻，而是为那些需要“查一下”的时刻准备的——比如想确认1986年决赛的进球者、或者比较不同年代的金靴数据。信息经过整理，以表格、列表或短文形式呈现，方便一眼对照。</p>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; margin: 18px 0 10px;">
+      <div style="background: #f0f5fe; border-radius: 40px; padding: 6px 18px; font-size: 0.85rem; border: 1px solid #d3e2f3;">历届决赛对阵</div>
+      <div style="background: #f0f5fe; border-radius: 40px; padding: 6px 18px; font-size: 0.85rem; border: 1px solid #d3e2f3;">金靴 · 金球 · 最佳阵容</div>
+      <div style="background: #f0f5fe; border-radius: 40px; padding: 6px 18px; font-size: 0.85rem; border: 1px solid #d3e2f3;">预选赛洲际名额</div>
+      <div style="background: #f0f5fe; border-radius: 40px; padding: 6px 18px; font-size: 0.85rem; border: 1px solid #d3e2f3;">经典比赛复盘链接</div>
+    </div>
+
+    <p>针对每一届赛事，还收集了相关的规则变化、用球、吉祥物等文化边角料——这部分属于“延伸阅读”。比如1970年引入红黄牌、1998年扩军至32队，这些背景能帮你更好地理解比赛之外的故事。</p>
+
+    <div class="note" style="margin-top: 14px;">
+      <strong>一个小提示：</strong> 如果你想快速找到某支球队的全部参赛记录，直接使用页内搜索或对照表索引。页面结构以“届次”为主线，同时提供按国家、按年份的交叉对照。
+    </div>
+  </div>
+
+  <!-- FAQ 摘要区 -->
+  <div class="card">
+    <div class="section-label">❓ FAQ 摘要</div>
+
+    <div class="faq-item">
+      <div class="faq-q">怎么查某届世界杯的完整赛程？</div>
+      <div class="faq-a">在页面中选择对应年份，会列出小组赛、淘汰赛对阵及比分。所有比赛都标有日期和场地。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">“延伸阅读”包括哪些内容？</div>
+      <div class="faq-a">裁判规则调整、用球演变、主题曲、吉祥物、争议判罚背景等，属于文化向资料，适合深度爱好者。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">数据更新频率如何？</div>
+      <div class="faq-a">基础历史数据基本固定，每届赛事结束后会补充最新一届的信息。日常查询无需担心时效性。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">可以只看某个大洲的球队表现吗？</div>
+      <div class="faq-a">可以。页面提供按大洲筛选的功能，方便比较同区域球队的历史成绩。</div>
+    </div>
+
+    <div class="more-faq">
+      <a href="https://cnwebs-sjb.com">世界杯</a>
+    </div>
+  </div>
+
+  <!-- 底部 -->
+  <div class="card" style="padding: 24px 28px;">
+    <div class="footer-links">
+      <span>📋 历届对照</span>
+      <a href="https://cnwebs-sjb.com">世界杯</a>
+      <span>📚 延伸阅读</span>
+      <span>🏆 纪录与数据</span>
+      <span>📌 常见问题</span>
+    </div>
+    <div class="footer-note">
+      cnwebs-sjb.com — 日常查询 · 对照 · 延伸阅读<br>
+      <span style="opacity: 0.7;">以信息整理为起点，让每一次查询都更轻快。</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
